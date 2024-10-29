@@ -57,6 +57,15 @@ public class ControllerTask {
         return serviceTask.detail(id, user);
     }
 
+    @DeleteMapping("/api/delete/{id}")
+    public @ResponseBody String DeleteOne(@PathVariable long id){
+        System.out.println("KICKB SERVER : Delete a task");
+        ConfigHTTP.attenteArticifielle();
+        MUser user = currentUser();
+        serviceTask.DeleteOne(id,user);
+        return "";
+    }
+
     /**
      * Créer une page qui affiche tous les utilisateurs et les titres des tâches.
      */

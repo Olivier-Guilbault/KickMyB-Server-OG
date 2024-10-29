@@ -78,6 +78,8 @@ public class ServiceTaskImpl implements ServiceTask {
         repoUser.save(user);
     }
 
+
+
     @Override
     public void updateProgress(long taskID, int value) {
         MTask element = repo.findById(taskID).get();
@@ -151,6 +153,15 @@ public class ServiceTaskImpl implements ServiceTask {
             res.add(r);
         }
         return res;
+    }
+
+    @Override
+    public void DeleteOne(Long taskId, MUser user) {
+        MTask element = user.tasks.stream().filter(elt -> elt.id == taskId).findFirst().get();
+        if(element != null){
+            user.tasks.remove(element);
+            repo.delete(element);
+        }
     }
 
     @Override
